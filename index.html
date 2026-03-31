@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Superlocal Studio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <span class="logo">Superlocal Studio</span>
+      <nav>
+        <a href="#product">Shop</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Handmade furniture, made to order</p>
+      <h1>Built to last.<br/>Made by hand.</h1>
+      <a href="#product" class="btn-primary">Shop now</a>
+    </div>
+  </section>
+
+  <section id="product" class="product-section">
+    <div class="product-inner">
+      <div class="product-image-placeholder">
+        <!-- Replace this div with an <img> tag pointing to your product photo -->
+        <span>Product photo coming soon</span>
+      </div>
+      <div class="product-details">
+        <p class="product-label">Bed Frame</p>
+        <h2 class="product-name">The Classic</h2>
+        <p class="product-price">$450</p>
+        <p class="product-description">
+          Hand-crafted from solid hardwood. Built to order, built to last.
+          Each frame is made individually — lead time is approximately 4–6 weeks.
+        </p>
+
+        <div id="orders-closed-banner" class="orders-closed" style="display:none;">
+          Orders are currently closed while we catch up on existing builds.
+          Check back soon or <a href="mailto:hello@example.com">get in touch</a>.
+        </div>
+
+        <button id="buy-btn" class="btn-primary" onclick="startCheckout()">
+          Order now
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="about-inner">
+      <h2>About</h2>
+      <p>
+        Superlocal Studio makes solid wood furniture by hand, one piece at a time.
+        We keep our order count small so every piece gets the attention it deserves.
+      </p>
+    </div>
+  </section>
+
+  <!-- Checkout modal -->
+  <div id="checkout-overlay" class="overlay" style="display:none;">
+    <div class="modal">
+      <button class="modal-close" onclick="closeCheckout()">&times;</button>
+      <h2>Complete your order</h2>
+      <div class="order-summary">
+        <span>The Classic — Bed Frame</span>
+        <span>$450</span>
+      </div>
+      <div id="payment-element"></div>
+      <div id="payment-error" class="error-msg" style="display:none;"></div>
+      <button id="submit-btn" class="btn-primary full-width" onclick="submitPayment()">
+        Pay $450
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Superlocal Studio</p>
+  </footer>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
