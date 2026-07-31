@@ -16,7 +16,7 @@
 
 <link rel="preload" href="fonts/Grenze-Italic.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="style.css?v=1" />
+<link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
 
@@ -79,8 +79,36 @@
     <div class="contact">
       <div class="l">get in touch</div>
       <div class="r">
-        <p>Have a piece in mind? Email directly to talk through dimensions, materials, and timeline &mdash; everything is built by hand, to order.</p>
-        <a href="mailto:jack@superlocal.studio" class="email">jack@superlocal.studio</a>
+        <p>Have a piece in mind? Send a note with dimensions, materials, and timeline &mdash; everything is built by hand, to order.</p>
+
+        <form class="inquiry" name="inquiry" method="POST" action="/"
+              data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="inquiry" />
+          <p class="hp" aria-hidden="true">
+            <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
+          <div class="field">
+            <label for="f-name">name</label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="f-email">email</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="f-message">what are you thinking?</label>
+            <textarea id="f-message" name="message" rows="5" required
+                      placeholder="A bed frame for a queen mattress, white oak if possible &mdash; no rush on timing."></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit">send inquiry</button>
+            <p class="status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <p class="alt">Or email directly &mdash; <a href="mailto:jack@superlocal.studio">jack@superlocal.studio</a></p>
       </div>
     </div>
 
@@ -91,6 +119,6 @@
   </div>
 </div>
 
-<script src="main.js?v=1"></script>
+<script src="main.js?v=2"></script>
 </body>
 </html>

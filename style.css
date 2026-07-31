@@ -153,16 +153,106 @@ body {
   color: var(--muted);
 }
 
-.contact a.email {
+/* ---- inquiry form ---- */
+.inquiry { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.field { display: flex; flex-direction: column; gap: 0.45rem; }
+
+.field label {
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input,
+.field textarea {
+  font-family: inherit;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  transition: border-color .18s, background-color .18s;
+}
+
+.field textarea { resize: vertical; min-height: 6.5rem; }
+
+.field input::placeholder,
+.field textarea::placeholder { color: var(--muted); opacity: 0.55; }
+
+.field input:hover,
+.field textarea:hover { border-color: var(--muted); }
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  background: rgba(127, 127, 127, 0.05);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+.inquiry button {
+  font-family: inherit;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 100px;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  transition: opacity .18s;
+}
+.inquiry button:hover { opacity: 0.72; }
+.inquiry button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.inquiry button[disabled] { opacity: 0.45; cursor: default; }
+
+.status {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.status.error { color: #a8443a; }
+
+/* shown in place of the form once a message is sent */
+.sent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.4rem 0 0.2rem;
+  border-top: 1px solid var(--hair);
+}
+.sent strong {
   font-family: 'Grenze', Georgia, serif;
   font-style: italic;
-  font-size: clamp(1.35rem, 3vw, 2.1rem);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
   color: var(--ink);
-  text-decoration: none;
-  transition: opacity .15s;
 }
-.contact a.email:hover { opacity: 0.5; }
-.contact a.email:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.sent span { font-size: 0.76rem; color: var(--muted); }
+
+.alt {
+  margin-top: 0.2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--hair);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.alt a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hair); }
+.alt a:hover { border-bottom-color: var(--ink); }
+.alt a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 /* ---- footer ---- */
 .foot {

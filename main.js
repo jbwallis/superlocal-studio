@@ -260,6 +260,44 @@
   new MutationObserver(function () { ink = inkColor(); drawText(curFs); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
+  /* ---- inquiry form ----
+     Posts to Netlify Forms in the background so the page never reloads.
+     Without JS the form still submits natively to Netlify's own thank-you page. */
+
+  var form = document.querySelector('form.inquiry');
+  if (form) {
+    var statusEl = form.querySelector('.status');
+    var button = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      if (!form.checkValidity()) return;      // let the browser show its own hints
+      e.preventDefault();
+
+      var data = new URLSearchParams(new FormData(form)).toString();
+      button.disabled = true;
+      statusEl.className = 'status';
+      statusEl.textContent = 'sending…';
+
+      fetch(form.getAttribute('action') || '/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        var sent = document.createElement('div');
+        sent.className = 'sent';
+        sent.setAttribute('role', 'status');
+        sent.innerHTML = '<strong>Thanks — message sent.</strong>' +
+          '<span>I read everything myself and will reply from jack@superlocal.studio.</span>';
+        form.replaceWith(sent);
+      }).catch(function () {
+        button.disabled = false;
+        statusEl.className = 'status error';
+        statusEl.textContent = 'Could not send — please email jack@superlocal.studio directly.';
+      });
+    });
+  }
+
   /* ---- gallery reveal ---- */
 
   var pieces = [].slice.call(document.querySelectorAll('.piece'));
