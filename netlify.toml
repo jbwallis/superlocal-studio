@@ -5,16 +5,14 @@
 # Cloudflare Web Analytics groups by path and does not log query strings, so
 # /poster has to be a real path to show up as its own row. A 301/302 here would
 # leave nothing for the beacon to record.
+#
+# Netlify normalises trailing slashes when matching, so this rule also serves
+# /poster/. That is why every asset reference in index.html is root-relative:
+# under /poster/ a relative path would resolve to /poster/images/... and 404.
 [[redirects]]
   from = "/poster"
   to = "/index.html"
   status = 200
-
-# Normalise the trailing-slash variant so relative asset paths still resolve.
-[[redirects]]
-  from = "/poster/"
-  to = "/poster"
-  status = 301
 
 [[headers]]
   for = "/*"
