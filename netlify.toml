@@ -1,6 +1,21 @@
 [build]
   publish = "."
 
+# Poster QR code target. This is a rewrite (200), not a redirect, on purpose:
+# Cloudflare Web Analytics groups by path and does not log query strings, so
+# /poster has to be a real path to show up as its own row. A 301/302 here would
+# leave nothing for the beacon to record.
+[[redirects]]
+  from = "/poster"
+  to = "/index.html"
+  status = 200
+
+# Normalise the trailing-slash variant so relative asset paths still resolve.
+[[redirects]]
+  from = "/poster/"
+  to = "/poster"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
