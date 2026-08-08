@@ -25,10 +25,10 @@
   var cy = null, curFs = null, fsSmooth = null;
 
   var CLOUDS = [
-    { src: 'images/clouds/cloudA.png', w: 520, h: 377 },
-    { src: 'images/clouds/cloudB.png', w: 520, h: 352 },
-    { src: 'images/clouds/cloudC.png', w: 384, h: 154 },
-    { src: 'images/clouds/cloudD.png', w: 505, h: 448 }
+    { src: '/images/clouds/cloudA.png', w: 520, h: 377 },
+    { src: '/images/clouds/cloudB.png', w: 520, h: 352 },
+    { src: '/images/clouds/cloudC.png', w: 384, h: 154 },
+    { src: '/images/clouds/cloudD.png', w: 505, h: 448 }
   ];
   var COUNT = 27;
   var instances = [];
