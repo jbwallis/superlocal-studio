@@ -4,30 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Order confirmed — Superlocal Studio</title>
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="theme-color" content="#284871" />
+  <link rel="stylesheet" href="/style.css?v=3" />
+  <style>
+    /* This page sits on the same sky as the index, so its content needs a
+       panel to sit on rather than printing straight onto the blue. */
+    .receipt {
+      max-width: 34rem;
+      margin: 0 auto;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.4rem;
+      padding: 3rem 2rem;
+    }
+    .receipt-card {
+      background: var(--panel);
+      border: 1px solid var(--hair);
+      border-radius: 20px;
+      box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.42);
+      padding: 2.6rem;
+      display: grid;
+      gap: 1.1rem;
+    }
+    .receipt-card h1 {
+      font-family: 'Grenze', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .receipt-k {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .receipt-card p.body {
+      color: var(--ink);
+      font-size: 0.82rem;
+      line-height: 1.75;
+      max-width: 46ch;
+    }
+    .receipt-card a {
+      justify-self: start;
+      margin-top: 0.4rem;
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      border-radius: 100px;
+      padding: 0.8rem 1.6rem;
+      text-decoration: none;
+      transition: opacity .18s;
+    }
+    .receipt-card a:hover { opacity: 0.72; }
+    .receipt-card a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .receipt-foot {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-sky);
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="/" class="logo">Superlocal Studio</a>
-    </div>
-  </header>
-
-  <section class="hero" style="min-height: 60vh;">
-    <div class="hero-inner">
-      <p class="hero-label">Order confirmed</p>
+  <div class="receipt">
+    <div class="receipt-card">
+      <p class="receipt-k">Order confirmed</p>
       <h1>Thank you!</h1>
-      <p style="color: #c8a97e; font-size: 1.1rem; margin-bottom: 2rem; max-width: 50ch;">
+      <p class="body">
         Your bed frame is now in the queue. We'll be in touch with updates
-        as your piece comes together — expect around 4–6 weeks.
+        as your piece comes together &mdash; expect around 4&ndash;6 weeks.
       </p>
-      <a href="/" class="btn-primary">Back to home</a>
+      <a href="/">Back to home</a>
     </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2026 Superlocal Studio</p>
-  </footer>
+    <div class="receipt-foot">
+      <span>&copy; 2026 Superlocal Studio</span>
+      <span>San Francisco, CA</span>
+    </div>
+  </div>
 
   <!-- Cloudflare Web Analytics -->
   <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js"

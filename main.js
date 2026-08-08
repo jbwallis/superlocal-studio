@@ -34,11 +34,12 @@
   var instances = [];
   var bandOrder = [];
 
-  function inkColor() {
+  function token(name, fallback) {
     return getComputedStyle(document.documentElement)
-      .getPropertyValue('--cloud').trim() || '#1a1917';
+      .getPropertyValue(name).trim() || fallback;
   }
-  var ink = inkColor();
+  var ink = token('--cloud', '#ffffff');          // halftone dots
+  var wordInk = token('--wordmark', '#f5f3ee');   // wordmark behind them
 
   /* ---- wordmark ---- */
 
@@ -52,7 +53,7 @@
     txt.width = W; txt.height = H;
     txtCtx.clearRect(0, 0, W, H);
     baseCy = H * 0.40;
-    txtCtx.fillStyle = ink;
+    txtCtx.fillStyle = wordInk;
     txtCtx.textAlign = 'center';
     txtCtx.textBaseline = 'middle';
     txtCtx.font = 'italic ' + fs + "px 'Grenze', Georgia, serif";
@@ -219,9 +220,12 @@
     rvCtx.globalCompositeOperation = 'source-over';
     rvCtx.clearRect(0, 0, W, H);
     rvCtx.drawImage(txt, 0, Math.round(cy - baseCy));
-    rvCtx.globalCompositeOperation = 'destination-in';
+    /* The wordmark sits beyond the cloud field, so the clouds subtract from
+       it rather than reveal it. Masking with bg — the dots already drawn this
+       frame — erodes the letters on the same halftone grid as the sky. */
+    rvCtx.globalCompositeOperation = 'destination-out';
     rvCtx.imageSmoothingEnabled = true;
-    rvCtx.drawImage(off, 0, 0, NW, NH, 0, 0, W, H);
+    rvCtx.drawImage(bg, 0, 0);
     rvCtx.globalCompositeOperation = 'source-over';
 
     advance();

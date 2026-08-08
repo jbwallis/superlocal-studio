@@ -21,8 +21,22 @@
   --muted:  #89857e;
   --panel:  rgba(245, 243, 238, 0.9);
   --hair:   rgba(26, 25, 23, 0.14);
-  --cloud:  #1a1917;
+
+  /* The page sits under a sky. --sky is the ground the cloud field drifts
+     across; --cream stays the light surface colour that panels and the
+     inquiry button are drawn from. The two are no longer the same thing. */
+  --sky:      #284871;
+  --cloud:    #ffffff;
+  --wordmark: #f5f3ee;
+
+  /* Anything printed straight onto the sky rather than onto a panel.
+     0.72 over --sky is 5.23:1 — these labels are small uppercase text, and
+     anything lighter drops under the 4.5:1 floor. */
+  --on-sky:   rgba(245, 243, 238, 0.72);
+  --rule-sky: rgba(245, 243, 238, 0.20);
 }
+/* The sky, the cloud and the wordmark are the identity now, so they hold
+   across both themes; only the panel surfaces below them respond. */
 @media (prefers-color-scheme: dark) {
   :root {
     --cream: #1b1917;
@@ -30,21 +44,20 @@
     --muted: #807c75;
     --panel: rgba(24, 22, 20, 0.86);
     --hair:  rgba(237, 233, 226, 0.14);
-    --cloud: #dedad2;
   }
 }
 :root[data-theme="light"] {
   --cream: #f5f3ee; --ink: #1a1917; --muted: #89857e;
-  --panel: rgba(245, 243, 238, 0.9); --hair: rgba(26, 25, 23, 0.14); --cloud: #1a1917;
+  --panel: rgba(245, 243, 238, 0.9); --hair: rgba(26, 25, 23, 0.14);
 }
 :root[data-theme="dark"] {
   --cream: #1b1917; --ink: #ede9e2; --muted: #807c75;
-  --panel: rgba(24, 22, 20, 0.86); --hair: rgba(237, 233, 226, 0.14); --cloud: #dedad2;
+  --panel: rgba(24, 22, 20, 0.86); --hair: rgba(237, 233, 226, 0.14);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { height: 100%; background: var(--cream); }
+html { height: 100%; background: var(--sky); }
 
 body {
   min-height: 100%;
@@ -84,11 +97,11 @@ body {
   justify-content: space-between;
   align-items: baseline;
   padding: 1.3rem 0;
-  border-top: 1px solid var(--hair);
+  border-top: 1px solid var(--rule-sky);
   font-size: 0.66rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--on-sky);
 }
 
 /* ---- gallery ---- */
@@ -262,7 +275,7 @@ body {
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--on-sky);
 }
 
 /* ---- utility ---- */
